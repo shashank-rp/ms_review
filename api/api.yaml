@@ -1,0 +1,381 @@
+openapi: 3.0.1
+info:
+  title: Review Microservice
+  description: "The Review Microservice manages user-generated reviews for products, services, or other entities.
+    It provides endpoints to create, read, update, and delete reviews, as well as to fetch reviews by user or item.
+    This service is designed to be easily integrated with other microservices, such as product or user services."
+  version: 0.0.1
+  contact:
+    email: shashank.r@kanilebettu.com
+    name: shashank
+
+
+paths:
+  '/v1/rvw/{tenantId}/review/':
+    post:
+      tags:
+        - Review
+      summary: Create a multiple reviews
+      description: Create a new list of reviews
+      operationId: createMultipleReviews
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Create a new list of reviews
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Review'
+
+      responses:
+        '201':
+          description: Reviews created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description:  Malformed request (e.g. required parameters are not present in the
+            request body).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - Review
+      summary: Get all Reviews
+      description: Get all review details
+      operationId: getAllReviews
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Review are successfully retrieved from the database
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Review
+      summary: Update existing list reviews in review table
+      description:  update existing list reviews in review table
+      operationId: updateMultipleReviews
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description:  update existing list reviews in review table
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RvMultiplePatchRequest'
+
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/rvw/{tenantId}/review/search/':
+    post:
+      tags:
+        - Review
+      summary: Fetch review based on search criteria
+      description: get review based on search criteria
+      operationId: getReviewsSearchCriteria
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: fetch reviews based on search criteria
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ReviewSearchRequest'
+
+      responses:
+        '201':
+          description: Reviews created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+        '400':
+          description:  Malformed request (e.g. required parameters are not present in the
+            request body).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      title: Error
+      type: object
+      properties:
+        code:
+          type: integer
+          format: Int32
+          example: 400
+          description: Error Code
+        message:
+          type: string
+          description: Error Message
+          example: some sample error
+        rootCause:
+          type: string
+          description: The root cause
+          example: the root cause of the error
+        advice:
+          type: string
+          description: The possible soution to the error
+          example: an advice with which the error could be resolved
+      description: Error Payload
+
+    Review:
+      type: object
+      properties:
+        rvId:
+          type: integer
+          format: int64
+          description: id for the each review
+          readOnly: true
+        rating:
+          type: string
+          format: String
+          description: rating of product
+        comment:
+          type: string
+          format: string
+          description: comments for product
+
+    RvMultiplePatchRequest:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 1
+        jRNLPatchRequest:
+          $ref: "#/components/schemas/RvPatchRequest"
+    RvPatchRequest:
+      type: array
+      items:
+        $ref: "#/components/schemas/RvPatchDocument"
+
+    RvPatchDocument:
+      description: A JSONPatch document as defined by RFC 6902
+      required:
+        - "op"
+        - "path"
+      properties:
+        op:
+          type: string
+          description: The operation to be performed
+          enum:
+            - "add"
+            - "remove"
+            - "replace"
+            - "move"
+            - "copy"
+            - "test"
+        path:
+          type: string
+          description: A JSON-Pointer
+        value:
+          type: object
+          description: The value to be used within the operations.
+        from:
+          type: string
+          description: A string containing a JSON Pointer value.
+
+    ReviewSearchRequest:
+      type: object
+      properties:
+        searchCriteria:
+          type: string
+          enum:
+            - ALL
+            - HIGH
+            - LOW
+            - MEDIUM
+          description: Used to add additional criteria to the search function. This field would determine search option
+        queryParam:
+          type: string
+          description: id of value provided
+          example: f377dc21-61e7-4e7d-9a45-ca60e662229b
+        idArray:
+          type: array
+          items:
+            type: integer
+            format: int64
+          description: array of ids to get data
+        pageNumber:
+          type: integer
+          format: int32
+          description: number of the page needed
+          example: 1
+        pageSize:
+          type: integer
+          format: int32
+          description: size of the page
+          example: 10
