@@ -308,6 +308,11 @@ components:
           type: string
           format: string
           description: comments for product
+        tenantId:
+          $ref: "#/components/schemas/UserData"
+        upsertInfo:
+          $ref: "#/components/schemas/UpsertInfo"
+
 
     RvMultiplePatchRequest:
       type: object
@@ -379,3 +384,39 @@ components:
           format: int32
           description: size of the page
           example: 10
+
+
+    UpsertInfo:
+      type: object
+      properties:
+        createdBy:
+          type: string
+          format: uuid
+          description: user who created rv
+        createdAt:
+          type: string
+          description: time at which created
+        modifiedBy:
+          type: string
+          format: uuid
+          description: user who modified rv
+        modifiedAt:
+          type: string
+          description: time at which modified
+
+    UserData:
+      type: object
+      properties:
+        userId:
+          type: string
+          format: uuid
+          description: user id
+        firstName:
+          type: string
+          description: first name
+        LastName:
+          type: string
+          description: lastname
+        userName:
+          type: string
+          description: username

@@ -25,7 +25,7 @@ public class Review extends BaseEntity{
     @Column(nullable = false,name = "tenantId")
     private UUID tenantId;
 
-    @Column(name = "description")
-    private String description;
+    @Column(name = "comment")
+    private String comment;
 
 }
