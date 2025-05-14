@@ -10,13 +10,15 @@ import com.rick.review.service.transformer.ReviewEntityToDtoTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 import static java.util.Objects.isNull;
 
+/**
+ * @author Shashank
+ * @version 1
+ * */
 @Component
 public class ReviewServiceImpl implements ReviewService {
 
@@ -28,6 +30,14 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Autowired
     private ReviewDao reviewDao;
+
+    /**
+     * This Method Returns List of Review
+     *
+     * @param tenantId unique id for user
+     * @param reviewDtos list of review dto for inserting
+     * @return List<ReviewDto>
+     * */
     @Override
     public List<ReviewDto> createMultipleReviews(UUID tenantId, List<ReviewDto> reviewDtos) {
         List<Review> reviewList = new ArrayList<>();
