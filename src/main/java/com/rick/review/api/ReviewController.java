@@ -19,7 +19,11 @@ public class ReviewController implements ReviewApi{
 
     @Override
     public ResponseEntity<List<ReviewDto>> createMultipleReviews(UUID tenantId, List<ReviewDto> reviewDto) throws Exception {
-        System.out.println("is it reallly came here");
         return new ResponseEntity<>(reviewService.createMultipleReviews(tenantId, reviewDto), HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<ReviewDto>> getAllReviews(UUID tenantId) throws Exception {
+        return new ResponseEntity<>(reviewService.getAllReviews(tenantId),HttpStatus.OK);
     }
 }

@@ -41,6 +41,12 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewEntityToDtoTransformer.convertReviewEntityToDto(tenantId,reviewList);
     }
 
+    @Override
+    public List<ReviewDto> getAllReviews(UUID tenantId) {
+        List<Review> reviewList = reviewDao.getAllReviews(tenantId);
+        return reviewEntityToDtoTransformer.convertReviewEntityToDto(tenantId,reviewList);
+    }
+
     private void reviewsValidations(List<ReviewDto> reviewDto) {
         if(isNull(reviewDto)){
             throw new CustomizedException("Dtos should not be empty","Please enter valid details", HttpStatus.BAD_REQUEST);

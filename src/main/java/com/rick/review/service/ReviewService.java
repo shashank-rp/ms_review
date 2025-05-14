@@ -7,4 +7,6 @@ import java.util.UUID;
 
 public interface ReviewService {
     List<ReviewDto> createMultipleReviews(UUID tenantId, List<ReviewDto> reviewDto);
+
+    List<ReviewDto> getAllReviews(UUID tenantId);
 }
