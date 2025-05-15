@@ -2,6 +2,7 @@ package com.rick.review.service.impl;
 
 import com.rick.review.dao.ReviewDao;
 import com.rick.review.dto.ReviewDto;
+import com.rick.review.dto.RvMultiplePatchRequestDto;
 import com.rick.review.entity.Review;
 import com.rick.review.exception.CustomizedException;
 import com.rick.review.service.ReviewService;
@@ -51,10 +52,28 @@ public class ReviewServiceImpl implements ReviewService {
         return reviewEntityToDtoTransformer.convertReviewEntityToDto(tenantId,reviewList);
     }
 
+    /**
+     *  This method is used for get multiple reviews
+     * @param tenantId unique id for user
+     * @return List<ReviewDto>
+     *
+     */
     @Override
     public List<ReviewDto> getAllReviews(UUID tenantId) {
         List<Review> reviewList = reviewDao.getAllReviews(tenantId);
         return reviewEntityToDtoTransformer.convertReviewEntityToDto(tenantId,reviewList);
+    }
+
+    /**
+     *  This method is used for update multiple reviews
+     * @param tenantId unique id for user
+     * @param rvMultiplePatchRequestDto
+     * @return List<ReviewDto>
+     *
+     */
+    @Override
+    public List<ReviewDto> updateMultipleReviews(UUID tenantId, List<RvMultiplePatchRequestDto> rvMultiplePatchRequestDto) {
+        return null;
     }
 
     private void reviewsValidations(List<ReviewDto> reviewDto) {

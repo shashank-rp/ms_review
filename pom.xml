@@ -246,7 +246,7 @@
 						</exclude>
 					</excludes>
 				</configuration>
-				<finalName>ms_review</finalName>
+
 			</plugin>
 			<plugin>
 				<groupId>org.openapitools</groupId>

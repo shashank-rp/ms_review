@@ -363,6 +363,7 @@ components:
             - HIGH
             - LOW
             - MEDIUM
+            - ARRAYID
           description: Used to add additional criteria to the search function. This field would determine search option
         queryParam:
           type: string
