@@ -6,30 +6,24 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "review")
+@Table(name = "recommendation")
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review extends BaseEntity{
-
+public class Recommendation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "rvId")
-    private Long rvId;
+    private Long rdId;
 
-    @Column(nullable = false,name = "rating")
-    private String rating;
+    @Column(nullable = false,name = "priority")
+    private Integer priority;
 
     @Column(nullable = false,name = "tenantId")
     private UUID tenantId;
 
-    @Column(name = "comment")
-    private String comment;
-
-    @ManyToOne
-    @JoinColumn(name = "product_id",referencedColumnName = "productId")
+    @OneToOne
+    @JoinColumn(name = "productId",referencedColumnName = "productId")
     private Product product;
-
 }
