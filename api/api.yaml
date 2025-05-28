@@ -267,6 +267,379 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+
+  '/v1/rvw/{tenantId}/product/':
+    post:
+      tags:
+        - Product
+      summary: Create a multiple products
+      description: Create a new list of products
+      operationId: createMultipleProducts
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Create a new list of products
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+
+      responses:
+        '201':
+          description: Reviews created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description:  Malformed request (e.g. required parameters are not present in the
+            request body).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - Product
+      summary: Get all Product
+      description: Get all Product details
+      operationId: getAllProducts
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Product are successfully retrieved from the database
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Product
+      summary: Update existing list products in product table
+      description:  update existing list products in product table
+      operationId: updateMultipleProducts
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description:  update existing list product in Product table
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RvMultiplePatchRequest'
+
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  '/v1/rvw/{tenantId}/rcmd/':
+    post:
+      tags:
+        - Recommendation
+      summary: Create a multiple recommendations
+      description: Create a new list of recommendations
+      operationId: createMultipleRecommendations
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description: Create a new list of recommendations
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Recommendation'
+
+      responses:
+        '201':
+          description: Reviews created successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recommendation'
+        '400':
+          description:  Malformed request (e.g. required parameters are not present in the
+            request body).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - Recommendation
+      summary: Get all Recommendations
+      description: Get all Recommendations details
+      operationId: getAllRecommendations
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Recommendation are successfully retrieved from the database
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recommendation'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    patch:
+      tags:
+        - Recommendation
+      summary: Update existing list recommendations in recommendation table
+      description:  update existing list recommendations in recommendation table
+      operationId: updateMultipleRecommendations
+      parameters:
+        - name: tenantId
+          in: path
+          description: A unique identifier for tenant
+          required: true
+          schema:
+            type: string
+            format: uuid
+      requestBody:
+        description:  update existing list reviews in review table
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/RvMultiplePatchRequest'
+
+      responses:
+        '200':
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recommendation'
+        '400':
+          description: "Bad request"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
 components:
   schemas:
     Error:
@@ -308,6 +681,10 @@ components:
           type: string
           format: string
           description: comments for product
+        productId:
+          type: string
+          format: uuid
+          description: product id
         tenantId:
           $ref: "#/components/schemas/UserData"
         upsertInfo:
@@ -320,7 +697,7 @@ components:
         id:
           type: string
           example: 1
-        jRNLPatchRequest:
+        rvPatchRequest:
           $ref: "#/components/schemas/RvPatchRequest"
     RvPatchRequest:
       type: array
@@ -364,6 +741,7 @@ components:
             - LOW
             - MEDIUM
             - ARRAYID
+            - PRODUCTID
           description: Used to add additional criteria to the search function. This field would determine search option
         queryParam:
           type: string
@@ -421,3 +799,52 @@ components:
         userName:
           type: string
           description: username
+
+    Product:
+      type: object
+      properties:
+        productId:
+          type: string
+          format: uuid
+          description: product id
+        productName:
+          type: string
+          format: String
+          description: name of product
+        origin:
+          type: string
+          format: string
+          description: address for product
+        type:
+          type: string
+          format: string
+          description: type of product
+        price:
+          type: number
+          format: double
+          description: price of product
+        tenantId:
+          $ref: "#/components/schemas/UserData"
+        upsertInfo:
+          $ref: "#/components/schemas/UpsertInfo"
+
+    Recommendation:
+      type: object
+      properties:
+        rdId:
+          type: integer
+          format: int64
+          description: id for the each recommendation
+          readOnly: true
+        productId:
+          type: string
+          format: uuid
+          description: product id
+        priority:
+          type: integer
+          format: int32
+          description: priority of product
+        tenantId:
+          $ref: "#/components/schemas/UserData"
+        upsertInfo:
+          $ref: "#/components/schemas/UpsertInfo"
